@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Reflection;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -93,7 +94,7 @@ namespace System.Windows.Markup
             List<Assembly> interestingAssemblies = new List<Assembly>();
 
             // Load all the assemblies into a list.
-            foreach(string assemblyName in _assemblyPathTable.Keys)
+            foreach(string assemblyName in _assemblyPathTable.Keys.OfType<string>().OrderBy(s => s))
             {
                 bool hasCacheInfo = true;
                 Assembly assy;
